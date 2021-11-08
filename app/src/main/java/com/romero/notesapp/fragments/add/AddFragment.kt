@@ -1,4 +1,4 @@
-package com.romero.notesapp.fragments
+package com.romero.notesapp.fragments.add
 
 import android.os.Bundle
 import android.text.TextUtils
