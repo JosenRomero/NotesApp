@@ -7,24 +7,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.romero.notesapp.R
-import kotlinx.android.synthetic.main.fragment_notes.view.*
+import com.romero.notesapp.databinding.FragmentNotesBinding
 
 class NotesFragment : Fragment() {
+
+    // FragmentNotesBinding - NotesFragment
+    private var _binding: FragmentNotesBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_notes, container, false)
+        _binding = FragmentNotesBinding.inflate(inflater, container, false)
 
-        view.floatingActionButton.setOnClickListener {
+        // btn
+        binding.floatingActionButton.setOnClickListener {
 
             findNavController().navigate(R.id.action_notesFragment_to_addFragment)
 
         }
 
-        return view
+        return binding.root
     }
 
 }
