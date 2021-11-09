@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.romero.notesapp.R
-import com.romero.notesapp.data.Note
-import com.romero.notesapp.data.NoteViewModel
+import com.romero.notesapp.model.Note
+import com.romero.notesapp.viewmodel.NoteViewModel
 import com.romero.notesapp.databinding.FragmentAddBinding
 
 class AddFragment : Fragment() {

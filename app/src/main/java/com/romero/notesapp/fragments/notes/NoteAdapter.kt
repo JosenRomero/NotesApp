@@ -2,8 +2,9 @@ package com.romero.notesapp.fragments.notes
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.romero.notesapp.data.Note
+import com.romero.notesapp.model.Note
 import com.romero.notesapp.databinding.ItemRowBinding
 
 class NoteAdapter: RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
@@ -23,10 +24,20 @@ class NoteAdapter: RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
 
+        val currentNote = notesList[position]
+
         holder.binding.apply {
 
             idTxt.text = notesList[position].id.toString()
             nameNoteTxt.text = notesList[position].nameNote
+
+            itemRowLayout.setOnClickListener {
+
+                val action = NotesFragmentDirections.actionNotesFragmentToUpdateFragment(currentNote)
+
+                holder.itemView.findNavController().navigate(action)
+
+            }
 
         }
 

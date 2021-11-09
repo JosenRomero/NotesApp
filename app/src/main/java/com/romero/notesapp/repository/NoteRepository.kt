@@ -1,6 +1,8 @@
-package com.romero.notesapp.data
+package com.romero.notesapp.repository
 
 import androidx.lifecycle.LiveData
+import com.romero.notesapp.data.NoteDao
+import com.romero.notesapp.model.Note
 
 // A repository class access to multiple data sources
 

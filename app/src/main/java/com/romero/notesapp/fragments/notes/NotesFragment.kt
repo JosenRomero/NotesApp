@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.romero.notesapp.R
-import com.romero.notesapp.data.NoteViewModel
+import com.romero.notesapp.viewmodel.NoteViewModel
 import com.romero.notesapp.databinding.FragmentNotesBinding
 
 class NotesFragment : Fragment() {
