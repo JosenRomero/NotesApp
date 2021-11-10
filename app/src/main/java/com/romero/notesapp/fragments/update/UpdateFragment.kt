@@ -1,11 +1,10 @@
 package com.romero.notesapp.fragments.update
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -48,6 +47,9 @@ class UpdateFragment : Fragment() {
 
         }
 
+        // add menu
+        setHasOptionsMenu(true)
+
         return binding.root
     }
 
@@ -78,6 +80,50 @@ class UpdateFragment : Fragment() {
     private fun inputCheck(updateName: String): Boolean {
 
         return !(TextUtils.isEmpty(updateName))
+
+    }
+
+    // menu
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+        inflater.inflate(R.menu.delete_menu, menu) // delete_menu.xml
+
+    }
+
+    // menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.menu_delete) { // selected the delete icon
+
+            deleteNote()
+
+        }
+
+        return super.onOptionsItemSelected(item)
+
+    }
+
+    private fun deleteNote() {
+
+        val dialog = AlertDialog.Builder(requireContext())
+
+        dialog.setPositiveButton("Yes") { _, _ ->
+
+            // Delete Current Note - Database
+            noteViewModel.deleteNote(args.currentNote)
+
+            Toast.makeText(requireContext(), "delete note!", Toast.LENGTH_LONG).show()
+
+            // Navigate Back
+            findNavController().navigate(R.id.action_updateFragment_to_notesFragment)
+
+        }
+
+        dialog.setNegativeButton("No") { _, _ -> }
+
+        dialog.setTitle("Delete note")
+        dialog.setMessage("Are you sure you want to delete the note")
+        dialog.create().show()
 
     }
 
