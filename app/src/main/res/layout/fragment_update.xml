@@ -7,13 +7,13 @@
     tools:context=".fragments.update.UpdateFragment">
 
     <EditText
-        android:id="@+id/nameNewNote"
+        android:id="@+id/updateName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="New Note"
+        tools:text="UpdateNote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
