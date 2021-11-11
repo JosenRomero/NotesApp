@@ -1,10 +1,10 @@
 package com.romero.notesapp.fragments.notes
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -51,7 +51,51 @@ class NotesFragment : Fragment() {
 
         }
 
+        // add menu
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+    // menu
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+        inflater.inflate(R.menu.delete_menu, menu) // delete_menu.xml
+
+    }
+
+    // menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.menu_delete) { // selected the delete icon
+
+            deleteAllNotes()
+
+        }
+
+        return super.onOptionsItemSelected(item)
+
+    }
+
+    private fun deleteAllNotes() {
+
+        val dialog = AlertDialog.Builder(requireContext())
+
+        dialog.setPositiveButton("Yes") {_, _ ->
+
+            // Delete all notes - Database
+            noteViewModel.deleteAllNotes()
+
+            Toast.makeText(requireContext(), "delete all notes!", Toast.LENGTH_LONG).show()
+
+        }
+
+        dialog.setNegativeButton("No") {_, _ -> }
+
+        dialog.setTitle("Delete all notes")
+        dialog.setMessage("Are you sure you want to delete all notes")
+        dialog.create().show()
+
     }
 
 }
