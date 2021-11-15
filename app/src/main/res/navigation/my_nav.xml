@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.romero.notesapp.fragments.ListFragment"
+        android:name="com.romero.notesapp.fragments.list.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" />
 </navigation>
