@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.romero.notesapp.databinding.ItemRowListBinding
-import com.romero.notesapp.model.Quote
+import com.romero.notesapp.model.QuoteModel
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
-    private var quotesList = emptyList<Quote>()
+    private var quotes = emptyList<QuoteModel>()
 
-    // // R.layout.item_row_list - ItemRowListBinding
+    // R.layout.item_row_list - ItemRowListBinding
     class ListViewHolder(val binding: ItemRowListBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -25,20 +25,20 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
         holder.binding.apply {
 
-            textContent.text = quotesList[position].content
-            textAuthor.text = quotesList[position].author
+            textContent.text = quotes[position].quote
+            textAuthor.text = quotes[position].author
 
         }
 
     }
 
     override fun getItemCount(): Int {
-        return quotesList.size
+        return quotes.size
     }
 
-    fun setQuotes(quotes: List<Quote>) {
+    fun setQuotes(quotesList: List<QuoteModel>) {
 
-        quotesList = quotes
+        quotes = quotesList
 
         notifyDataSetChanged()
 

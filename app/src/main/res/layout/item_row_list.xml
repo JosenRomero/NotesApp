@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="content content content content content content"
-        android:textSize="32sp"
-        android:textStyle="normal"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,8 +21,7 @@
         android:layout_height="wrap_content"
         android:text="author"
         android:textAlignment="viewEnd"
-        android:textSize="32sp"
-        android:textStyle="normal"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/textContent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textContent" />

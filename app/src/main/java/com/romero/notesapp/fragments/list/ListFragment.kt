@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.romero.notesapp.R
 import com.romero.notesapp.databinding.FragmentListBinding
-import com.romero.notesapp.model.Quote
+import com.romero.notesapp.viewmodel.QuoteViewModel
 
 class ListFragment : Fragment() {
 
@@ -17,6 +17,8 @@ class ListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var adapter = ListAdapter()
+
+    private var quoteViewModel: QuoteViewModel = QuoteViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +31,13 @@ class ListFragment : Fragment() {
         binding.recyclerViewQuotes.adapter = adapter
         binding.recyclerViewQuotes.layoutManager = LinearLayoutManager(requireContext())
 
-        // adding example data
-        val test = ArrayList<Quote>()
-        test.add(Quote("jose romero", "ejemplo 1 testing"))
-        test.add(Quote("jose romero", "ejemplo 36 testing"))
-        adapter.setQuotes(test)
+        // quoteViewModel
+        quoteViewModel.getAllQuotes()
+        quoteViewModel.quotes.observe(viewLifecycleOwner, Observer { data ->
+
+            adapter.setQuotes(data)
+
+        })
 
         return binding.root
     }
