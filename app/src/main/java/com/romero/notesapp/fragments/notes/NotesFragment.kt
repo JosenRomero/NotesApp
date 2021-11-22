@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.romero.notesapp.R
 import com.romero.notesapp.viewmodel.NoteViewModel
@@ -33,6 +34,7 @@ class NotesFragment : Fragment() {
         // recyclerview
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
 
         // NoteViewModel
         noteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)

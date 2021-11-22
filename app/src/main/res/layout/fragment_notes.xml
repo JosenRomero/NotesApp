@@ -23,7 +23,7 @@
         android:layout_gravity="bottom|end"
         android:clickable="true"
         android:focusable="true"
-        android:tint="@color/purple_700"
+        android:backgroundTint="@color/cyan_500"
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"

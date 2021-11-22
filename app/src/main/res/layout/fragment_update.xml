@@ -25,7 +25,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:text="Update Note"
-        android:backgroundTint="@color/purple_700"
+        android:backgroundTint="@color/cyan_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

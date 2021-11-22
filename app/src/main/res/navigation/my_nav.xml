@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/notesFragment"
         android:name="com.romero.notesapp.fragments.notes.NotesFragment"
-        android:label="fragment_notes"
+        android:label="My notes"
         tools:layout="@layout/fragment_notes" >
         <action
             android:id="@+id/action_notesFragment_to_addFragment"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/addFragment"
         android:name="com.romero.notesapp.fragments.add.AddFragment"
-        android:label="fragment_add"
+        android:label="Add note"
         tools:layout="@layout/fragment_add" >
         <action
             android:id="@+id/action_addFragment_to_notesFragment"
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/updateFragment"
         android:name="com.romero.notesapp.fragments.update.UpdateFragment"
-        android:label="fragment_update"
+        android:label="Update note"
         tools:layout="@layout/fragment_update" >
         <action
             android:id="@+id/action_updateFragment_to_notesFragment"
@@ -40,6 +40,6 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="com.romero.notesapp.fragments.list.ListFragment"
-        android:label="fragment_list"
+        android:label="Quotes"
         tools:layout="@layout/fragment_list" />
 </navigation>
