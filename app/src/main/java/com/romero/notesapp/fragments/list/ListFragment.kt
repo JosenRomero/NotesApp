@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.romero.notesapp.databinding.FragmentListBinding
@@ -36,6 +37,13 @@ class ListFragment : Fragment() {
         quoteViewModel.quotes.observe(viewLifecycleOwner, Observer { data ->
 
             adapter.setQuotes(data)
+
+        })
+
+        // progress bar
+        quoteViewModel.isLoading.observe(viewLifecycleOwner, Observer {
+
+            binding.progressBar.isVisible = it
 
         })
 

@@ -1,5 +1,6 @@
 package com.romero.notesapp.fragments.notes
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -36,7 +37,29 @@ class NoteAdapter(private val listener: MyClickListener): RecyclerView.Adapter<N
 
             idTxt.text = position.toString()
             nameNoteTxt.text = notesList[position].nameNote
+
+            // checkbox
+
             checkBox.isChecked = notesList[position].finishNote
+
+            checkBox.setOnClickListener {
+
+                // method is in MyClickListener interface
+                listener.onCheckBoxClick(notesList[position].id, notesList[position].nameNote, notesList[position].finishNote)
+
+            }
+
+            // if checkbox is Checked then strikethrough text
+            nameNoteTxt.paintFlags = strikethrough(checkBox.isChecked)
+
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+
+                // if checkbox is Checked then strikethrough text
+                nameNoteTxt.paintFlags = strikethrough(isChecked)
+
+            }
+
+            // itemRowLayout
 
             itemRowLayout.setOnClickListener {
 
@@ -45,13 +68,6 @@ class NoteAdapter(private val listener: MyClickListener): RecyclerView.Adapter<N
                 holder.itemView.findNavController().navigate(action)
 
             }
-
-        }
-
-        holder.binding.checkBox.setOnClickListener {
-
-            // method is in MyClickListener interface
-            listener.onCheckBoxClick(notesList[position].id, notesList[position].nameNote, notesList[position].finishNote)
 
         }
 
@@ -66,6 +82,14 @@ class NoteAdapter(private val listener: MyClickListener): RecyclerView.Adapter<N
         notesList = notes
 
         notifyDataSetChanged()
+
+    }
+
+    private fun strikethrough(isChecked: Boolean): Int {
+
+        // Paint.STRIKE_THRU_TEXT_FLAG strikethrough text
+        // Paint.ANTI_ALIAS_FLAG normal text
+        return if (isChecked) Paint.STRIKE_THRU_TEXT_FLAG else Paint.ANTI_ALIAS_FLAG
 
     }
 
