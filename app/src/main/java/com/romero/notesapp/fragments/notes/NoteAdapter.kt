@@ -7,9 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.romero.notesapp.model.Note
 import com.romero.notesapp.databinding.ItemRowBinding
 
-class NoteAdapter: RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter(private val listener: MyClickListener): RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     private var notesList = emptyList<Note>()
+
+    interface MyClickListener {
+
+        fun onCheckBoxClick(position: Int, nameNote: String, finishNote: Boolean)
+
+    }
 
     // R.layout.item_row - ItemRowBinding
     class NoteViewHolder(val binding: ItemRowBinding): RecyclerView.ViewHolder(binding.root)
@@ -28,8 +34,9 @@ class NoteAdapter: RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
         holder.binding.apply {
 
-            idTxt.text = notesList[position].id.toString()
+            idTxt.text = position.toString()
             nameNoteTxt.text = notesList[position].nameNote
+            checkBox.isChecked = notesList[position].finishNote
 
             itemRowLayout.setOnClickListener {
 
@@ -38,6 +45,13 @@ class NoteAdapter: RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
                 holder.itemView.findNavController().navigate(action)
 
             }
+
+        }
+
+        holder.binding.checkBox.setOnClickListener {
+
+            // method is in MyClickListener interface
+            listener.onCheckBoxClick(notesList[position].id, notesList[position].nameNote, notesList[position].finishNote)
 
         }
 

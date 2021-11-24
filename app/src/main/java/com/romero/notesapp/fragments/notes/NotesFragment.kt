@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.romero.notesapp.R
 import com.romero.notesapp.viewmodel.NoteViewModel
 import com.romero.notesapp.databinding.FragmentNotesBinding
+import com.romero.notesapp.model.Note
 
-class NotesFragment : Fragment() {
+class NotesFragment : Fragment(), NoteAdapter.MyClickListener {
 
     // FragmentNotesBinding - NotesFragment
     private var _binding: FragmentNotesBinding? = null
@@ -22,7 +23,7 @@ class NotesFragment : Fragment() {
 
     private lateinit var noteViewModel: NoteViewModel
 
-    private var adapter = NoteAdapter()
+    private var adapter = NoteAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -97,6 +98,19 @@ class NotesFragment : Fragment() {
         dialog.setTitle("Delete all notes")
         dialog.setMessage("Are you sure you want to delete all notes")
         dialog.create().show()
+
+    }
+
+    // see NoteAdapter.kt
+    // this method needs NoteAdapter.MyClickListener
+    override fun onCheckBoxClick(position: Int, nameNote: String, finishNote: Boolean) {
+
+        val finishN = !finishNote
+
+        val note = Note(position, nameNote, finishN)
+
+        // Update Current Note - Database
+        noteViewModel.updateNote(note)
 
     }
 
